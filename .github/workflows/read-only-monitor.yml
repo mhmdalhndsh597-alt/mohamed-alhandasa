@@ -3,7 +3,7 @@ name: Read-only liquidity monitor
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: read
@@ -36,11 +36,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run read-only monitor
+      - name: Run read-only whale monitor
         env:
           RPC_URL: ${{ secrets.RPC_URL }}
           CHAIN_ID: ${{ vars.CHAIN_ID }}
           WATCH_ADDRESSES: ${{ vars.WATCH_ADDRESSES }}
           CONTRACT_ADDRESSES: ${{ vars.CONTRACT_ADDRESSES }}
+          WHALE_THRESHOLD_NATIVE: ${{ vars.WHALE_THRESHOLD_NATIVE }}
+          EXPLORER_TX_URL: ${{ vars.EXPLORER_TX_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          LOG_LEVEL: INFO
         run: python monitor.py

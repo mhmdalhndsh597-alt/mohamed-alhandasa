@@ -1,8 +1,9 @@
 import os
 import unittest
+from decimal import Decimal
 from unittest.mock import patch
 
-from monitor import Config, collect_snapshot
+from monitor import Config, collect_snapshot, find_whale_transactions
 
 
 class MonitorSafetyTests(unittest.TestCase):
@@ -24,6 +25,26 @@ class MonitorSafetyTests(unittest.TestCase):
         with patch.dict(os.environ, {"RPC_URL": "https://example.invalid", "CHAIN_ID": "1"}, clear=False):
             snapshot = collect_snapshot(Config.from_env())
         self.assertNotEqual(snapshot["chain_id"], snapshot["expected_chain_id"])
+
+    @patch("monitor.rpc_call")
+    def test_whale_filter_ignores_small_transfers(self, rpc_call):
+        rpc_call.return_value = {"transactions": [
+            {"hash": "0xsmall", "from": "0xaaa", "to": "0xbbb", "value": hex(99 * 10**18)},
+            {"hash": "0xwhale", "from": "0xaaa", "to": "0xbbb", "value": hex(101 * 10**18)},
+        ]}
+        config = Config("rpc", 1, (), (), None, Decimal("100"), "https://scan/tx/{tx_hash}")
+        alerts = find_whale_transactions(config, 16)
+        self.assertEqual([a["hash"] for a in alerts], ["0xwhale"])
+
+    @patch("monitor.rpc_call")
+    def test_whale_filter_respects_monitored_addresses(self, rpc_call):
+        rpc_call.return_value = {"transactions": [
+            {"hash": "0xother", "from": "0xother", "to": "0xelse", "value": hex(500 * 10**18)},
+            {"hash": "0xwatched", "from": "0xwatched", "to": "0xelse", "value": hex(500 * 10**18)},
+        ]}
+        config = Config("rpc", 1, ("0xwatched",), (), None, Decimal("100"), "https://scan/tx/{tx_hash}")
+        alerts = find_whale_transactions(config, 16)
+        self.assertEqual([a["hash"] for a in alerts], ["0xwatched"])
 
 
 if __name__ == "__main__":

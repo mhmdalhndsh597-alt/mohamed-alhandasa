@@ -4,21 +4,25 @@
 
 ## ما يفعله
 
-- يتحقق من الشبكة ورقم آخر كتلة عبر RPC.
-- يسجل لقطة مراقبة قابلة للتدقيق.
-- يرسل تنبيهًا محدودًا إلى Discord عبر Webhook اختياري.
-- يفشل مغلقًا عند تعطل RPC أو اختلاف الشبكة.
-- يشغل اختبارات وفحوص `ruff` و`bandit` و`pip-audit` في GitHub Actions.
+- يفحص أحدث كتلة عبر RPC ويبحث عن التحويلات الكبيرة فقط.
+- يرسل **تنبيه حوت** عندما تتجاوز قيمة التحويل عتبة `WHALE_THRESHOLD_NATIVE`.
+- يقيّد التنبيهات بالعناوين الموجودة في `WATCH_ADDRESSES` و`CONTRACT_ADDRESSES` عند تحديدها.
+- يرسل Discord Embeds منظمة تشمل المبلغ، الكتلة، المرسل، المستلم، ورابط Blockchain Explorer.
+- يسجل الأخطاء في سجل التشغيل، ويرسل تنبيه توقف مختصرًا دون كشف أسرار.
+- يفشل مغلقًا عند تعطل RPC أو اختلاف الشبكة، ولا ينفذ أي معاملة.
+- يعمل GitHub Actions تلقائيًا كل 5 دقائق، مع تشغيل يدوي متاح.
 
 ## متغيرات GitHub
 
 ضع القيم العامة التالية في **Actions Variables**:
 
-- `CHAIN_ID`
-- `WATCH_ADDRESSES`
-- `CONTRACT_ADDRESSES`
+- `CHAIN_ID` — رقم الشبكة، مثل `1`.
+- `WATCH_ADDRESSES` — عناوين مفصولة بفواصل للمراقبة، ويمكن تركها فارغة لمراقبة كل التحويلات الكبيرة.
+- `CONTRACT_ADDRESSES` — عناوين العقود ذات الصلة، مفصولة بفواصل.
+- `WHALE_THRESHOLD_NATIVE` — الحد الأدنى بالعملة الأصلية، مثل `100`.
+- `EXPLORER_TX_URL` — قالب رابط المعاملة، مثل `https://etherscan.io/tx/{tx_hash}`.
 
-ضع القيم التشغيلية غير العامة التالية في **Actions Secrets**:
+ضع القيم التشغيلية الحساسة التالية في **Actions Secrets**:
 
 - `RPC_URL`
 - `DISCORD_WEBHOOK_URL`
@@ -30,9 +34,15 @@
 ```bash
 export RPC_URL="https://your-read-only-rpc.example"
 export CHAIN_ID="1"
+export WHALE_THRESHOLD_NATIVE="100"
+export EXPLORER_TX_URL="https://etherscan.io/tx/{tx_hash}"
 python monitor.py
 ```
 
+## التسجيل
+
+تظهر السجلات في مخرجات GitHub Actions. ولحفظها محليًا يمكن ضبط `LOG_FILE` على مسار ملف محلي؛ لا تستخدمه لتخزين الأسرار.
+
 ## حدود النطاق
 
-أوامر Discord للتحويل أو التوقيع أو تشغيل/إيقاف معاملات مالية غير مدعومة. Discord هنا قناة تنبيه فقط، مع `allowed_mentions` معطلة لتقليل مخاطر الإزعاج أو الإشارات غير المقصودة.
+أوامر Discord للتحويل أو التوقيع أو تشغيل/إيقاف معاملات مالية غير مدعومة. Discord هنا قناة تنبيه فقط، مع `allowed_mentions` معطلة لتقليل مخاطر الإزعاج أو الإشارات غير المقصودة. جدولة GitHub Actions قد تتأخر قليلًا بسبب ازدحام GitHub، لكنها مضبوطة على فاصل 5 دقائق.
