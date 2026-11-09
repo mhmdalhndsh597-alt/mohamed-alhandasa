@@ -61,7 +61,11 @@ class Config:
                 for x in os.environ.get("CONTRACT_ADDRESSES", "").split(",")
                 if x.strip()
             ),
-            discord_webhook_url=os.environ.get("DISCORD_WEBHOOK_URL") or None,
+            discord_webhook_url=(
+                os.environ.get("DISCORD_WEBHOOK")
+                or os.environ.get("DISCORD_WEBHOOK_URL")
+                or None
+            ),
             whale_threshold_native=threshold,
             explorer_tx_url=os.environ.get("EXPLORER_TX_URL", DEFAULT_EXPLORER_TX_URL).strip(),
         )

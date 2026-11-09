@@ -44,6 +44,6 @@ jobs:
           CONTRACT_ADDRESSES: ${{ vars.CONTRACT_ADDRESSES }}
           WHALE_THRESHOLD_NATIVE: ${{ vars.WHALE_THRESHOLD_NATIVE }}
           EXPLORER_TX_URL: ${{ vars.EXPLORER_TX_URL }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           LOG_LEVEL: INFO
         run: python monitor.py

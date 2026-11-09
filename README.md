@@ -27,7 +27,7 @@
 ضع القيم التشغيلية الحساسة التالية في **Actions Secrets**:
 
 - `RPC_URL`
-- `DISCORD_WEBHOOK_URL`
+- `DISCORD_WEBHOOK`
 
 لا تضف أبدًا مفاتيح خاصة، seed phrases، رموز وصول لمحافظ، أو مفاتيح توقيع إلى هذا المستودع أو GitHub Actions أو Discord. لا توجد في المشروع دالة توقيع أو إرسال معاملات.
 
