@@ -77,3 +77,20 @@ streamlit run dashboard.py
 ## حدود النطاق
 
 أوامر Discord للتحويل أو التوقيع أو تشغيل/إيقاف معاملات مالية غير مدعومة. Webhooks الإضافية تنشر إشعارات فقط، مع `allowed_mentions` معطلة لتقليل مخاطر الإزعاج أو الإشارات غير المقصودة. جدولة GitHub Actions قد تتأخر قليلًا بسبب ازدحام GitHub، لكنها مضبوطة على فاصل 5 دقائق.
+
+
+## الروابط الرسمية
+
+الروابط التالية مقدمة من صاحب الحساب ومجمعة في [الإعدادات المركزية](config/social-profiles.json). تُستخدم الواجهة العامة هذه البيانات لإنشاء أزرار التواصل تلقائيًا.
+
+| المنصة | الحساب | الرابط | حالة الفحص |
+|---|---|---|---|
+| YouTube | قناة يوتيوب - Mohamed El Handasa | [https://www.youtube.com/@عادات--وتقاليد](https://www.youtube.com/@عادات--وتقاليد) | يحتاج مراجعة: أعاد 404 في آخر فحص |
+| SoundCloud | حساب ساوند كلاود - محمد الهندسة | [https://on.soundcloud.com/ttH9Uidd3VdOEiHx2q](https://on.soundcloud.com/ttH9Uidd3VdOEiHx2q) | تم التحقق من الاستجابة |
+| Facebook | صفحة فيسبوك - عادات وتقاليد | [https://www.facebook.com/profile.php?id=100067377875691](https://www.facebook.com/profile.php?id=100067377875691) | تم التحقق من الاستجابة |
+| Facebook | صفحة فيسبوك - حكايا القلب | [https://www.facebook.com/profile.php?id=61579122637482](https://www.facebook.com/profile.php?id=61579122637482) | تم التحقق من الاستجابة |
+| Facebook | صفحة فيسبوك - Focus | [https://www.facebook.com/mhmdalhndsh597](https://www.facebook.com/mhmdalhndsh597) | تم التحقق من الاستجابة |
+| Facebook | صفحة فيسبوك - الهندسة ماركت | [https://www.facebook.com/eLhandsaF](https://www.facebook.com/eLhandsaF) | تم التحقق من الاستجابة |
+| Facebook | الملف الشخصي على فيسبوك - محمد الهندسة | [https://www.facebook.com/mhmdlhnd.0000](https://www.facebook.com/mhmdlhnd.0000) | تم التحقق من الاستجابة |
+
+ملاحظة: رابط YouTube محفوظ كما ورد في ملف الروابط المرفق، لكنه أعاد `404` أثناء آخر فحص؛ يُرجى مراجعته قبل الاعتماد النهائي عليه.
