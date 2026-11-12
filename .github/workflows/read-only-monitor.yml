@@ -41,12 +41,12 @@ jobs:
         env:
           RPC_URL: ${{ secrets.RPC_URL }}
           RPC_URLS: ${{ secrets.RPC_URLS }}
-          CHAIN_ID: ${{ vars.CHAIN_ID }}
-          WATCH_ADDRESSES: ${{ vars.WATCH_ADDRESSES }}
-          CONTRACT_ADDRESSES: ${{ vars.CONTRACT_ADDRESSES }}
-          WHALE_THRESHOLD_NATIVE: ${{ vars.WHALE_THRESHOLD_NATIVE }}
-          SPIKE_THRESHOLD_PERCENT: ${{ vars.SPIKE_THRESHOLD_PERCENT }}
-          EXPLORER_TX_URL: ${{ vars.EXPLORER_TX_URL }}
+          CHAIN_ID: ${{ vars.CHAIN_ID || '1' }}
+          WATCH_ADDRESSES: ${{ vars.WATCH_ADDRESSES || '' }}
+          CONTRACT_ADDRESSES: ${{ vars.CONTRACT_ADDRESSES || '' }}
+          WHALE_THRESHOLD_NATIVE: ${{ vars.WHALE_THRESHOLD_NATIVE || '100' }}
+          SPIKE_THRESHOLD_PERCENT: ${{ vars.SPIKE_THRESHOLD_PERCENT || '50' }}
+          EXPLORER_TX_URL: ${{ vars.EXPLORER_TX_URL || 'https://etherscan.io/tx/{tx_hash}' }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           SOCIAL_WEBHOOKS: ${{ secrets.SOCIAL_WEBHOOKS }}
           STATE_FILE: data/volume_history.jsonl
