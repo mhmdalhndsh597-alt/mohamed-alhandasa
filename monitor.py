@@ -9,6 +9,8 @@ import logging
 import os
 import sys
 import urllib.request
+
+RPC_USER_AGENT = "Mozilla/5.0 (compatible; HandasaReadOnlyMonitor/1.0)"
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal, InvalidOperation
@@ -50,7 +52,7 @@ class Config:
             primary = os.environ.get("RPC_URL", "").strip()
             if primary:
                 # Keep the configured endpoint first, then use read-only public fallbacks.
-                rpc_urls = (primary, "https://ethereum-rpc.publicnode.com", "https://cloudflare-eth.com")
+                rpc_urls = (primary, "https://ethereum-rpc.publicnode.com", "https://rpc.ankr.com/eth", "https://1rpc.io/eth", "https://cloudflare-eth.com")
         if not rpc_urls:
             raise ValueError("RPC_URL or RPC_URLS is required")
         try:
@@ -77,7 +79,7 @@ class Config:
 
 def rpc_call(rpc_url: str, method: str, params: list[Any]) -> Any:
     payload = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
-    request = urllib.request.Request(rpc_url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+    request = urllib.request.Request(rpc_url, data=payload, headers={"Content-Type": "application/json", "User-Agent": RPC_USER_AGENT}, method="POST")
     with safe_urlopen(request) as response:
         result = json.loads(response.read().decode())
     if result.get("error"):
@@ -105,7 +107,7 @@ def send_discord_embed(webhook_url: str, *, title: str, description: str, color:
         embed["url"] = url[:2048]
     body = {"allowed_mentions": {"parse": []}, "embeds": [embed]}
     request = urllib.request.Request(webhook_url, data=json.dumps(body).encode(),
-                                     headers={"Content-Type": "application/json"}, method="POST")
+                                     headers={"Content-Type": "application/json", "User-Agent": RPC_USER_AGENT}, method="POST")
     with safe_urlopen(request) as response:
         if response.status >= 300:
             raise RuntimeError(f"notification webhook returned HTTP {response.status}")
