@@ -49,7 +49,8 @@ class Config:
         if not rpc_urls:
             primary = os.environ.get("RPC_URL", "").strip()
             if primary:
-                rpc_urls = (primary,)
+                # Keep the configured endpoint first, then use read-only public fallbacks.
+                rpc_urls = (primary, "https://ethereum-rpc.publicnode.com", "https://cloudflare-eth.com")
         if not rpc_urls:
             raise ValueError("RPC_URL or RPC_URLS is required")
         try:
