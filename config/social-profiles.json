@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "owner": {
+    "nameAr": "محمد الهندسة",
+    "nameEn": "Mohamed El Handasa",
+    "handle": "mhmdalhndsh597"
+  },
+  "source": "social_media_links_mohamed_elhandasa.pdf",
+  "lastReviewed": "2026-11-12",
+  "profiles": [
+    {
+      "id": "youtube-mohamed-el-handasa",
+      "platform": "YouTube",
+      "type": "channel",
+      "nameAr": "قناة يوتيوب - Mohamed El Handasa",
+      "nameEn": "YouTube channel - Mohamed El Handasa",
+      "url": "https://www.youtube.com/@عادات--وتقاليد",
+      "official": true,
+      "enabled": true,
+      "liveChecked": false,
+      "verificationNote": "الرابط كما ورد في ملف الروابط؛ أعاد 404 أثناء الفحص بتاريخ 2026-11-12."
+    },
+    {
+      "id": "soundcloud-mohamed-el-handasa",
+      "platform": "SoundCloud",
+      "type": "streaming",
+      "nameAr": "حساب ساوند كلاود - محمد الهندسة",
+      "nameEn": "SoundCloud - Mohamed El Handasa",
+      "url": "https://on.soundcloud.com/ttH9Uidd3VdOEiHx2q",
+      "official": true,
+      "enabled": true,
+      "liveChecked": true
+    },
+    {
+      "id": "facebook-adat-wa-taqalid",
+      "platform": "Facebook",
+      "type": "page",
+      "nameAr": "صفحة فيسبوك - عادات وتقاليد",
+      "nameEn": "Facebook page - Customs and Traditions",
+      "url": "https://www.facebook.com/profile.php?id=100067377875691",
+      "official": true,
+      "enabled": true,
+      "liveChecked": true
+    },
+    {
+      "id": "facebook-hikaya-alqalb",
+      "platform": "Facebook",
+      "type": "page",
+      "nameAr": "صفحة فيسبوك - حكايا القلب",
+      "nameEn": "Facebook page - Heart Stories",
+      "url": "https://www.facebook.com/profile.php?id=61579122637482",
+      "official": true,
+      "enabled": true,
+      "liveChecked": true
+    },
+    {
+      "id": "facebook-focus",
+      "platform": "Facebook",
+      "type": "page",
+      "nameAr": "صفحة فيسبوك - Focus",
+      "nameEn": "Facebook page - Focus",
+      "url": "https://www.facebook.com/mhmdalhndsh597",
+      "official": true,
+      "enabled": true,
+      "liveChecked": true
+    },
+    {
+      "id": "facebook-elhandsaf-market",
+      "platform": "Facebook",
+      "type": "page",
+      "nameAr": "صفحة فيسبوك - الهندسة ماركت",
+      "nameEn": "Facebook page - Elhandsa Market",
+      "url": "https://www.facebook.com/eLhandsaF",
+      "official": true,
+      "enabled": true,
+      "liveChecked": true
+    },
+    {
+      "id": "facebook-mohamed-el-handasa-profile",
+      "platform": "Facebook",
+      "type": "profile",
+      "nameAr": "الملف الشخصي على فيسبوك - محمد الهندسة",
+      "nameEn": "Facebook profile - Mohamed El Handasa",
+      "url": "https://www.facebook.com/mhmdlhnd.0000",
+      "official": true,
+      "enabled": true,
+      "liveChecked": true
+    }
+  ]
+}
