@@ -9,14 +9,14 @@ import logging
 import os
 import sys
 import urllib.request
-
-RPC_USER_AGENT = "Mozilla/5.0 (compatible; HandasaReadOnlyMonitor/1.0)"
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+
+RPC_USER_AGENT = "Mozilla/5.0 (compatible; HandasaReadOnlyMonitor/1.0)"
 
 LOG = logging.getLogger("liquidity-monitor")
 WEI_PER_NATIVE = Decimal(10) ** 18
